@@ -1,12 +1,17 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-var commandCharacter = '/';
+var commandCharacter = ';';
 
 var commands = [
   {
+    name: "help",
+    usage: commandCharacter + "help <command-name>",
+    description: "Sends you a list of commands through private message or tells the usage of a specified command."
+  },
+  {
     name: "roll",
-    usage: "/roll [number]d[size]",
+    usage:  commandCharacter + "roll [number]d[size]",
     description: "Rolls [number] dice with [size] sides."
   }
 ];
@@ -48,7 +53,19 @@ client.on('ready', () => {
 
 client.on('message', message => {
   var command = message.content.split(" ");
-  if (command[0] === commandCharacter + 'roll') {
+  if (command[0] === commandCharacter + 'help') {
+    if (getCommandInfo(command[1]) != null) {
+      if (getCommandInfo(command[1]) != null) {
+        message.author.send("Usage: " + getCommandInfo(command[1]).usage);
+      }
+    } else {
+      var helpString = "";
+      for (x in commands) {
+        helpString += commands[x].name + ": " + commands[x].description + "\n";
+      }
+      message.author.send(helpString, {code: true});
+    }
+  } else if (command[0] === commandCharacter + 'roll') {
     if (typeof(command[1]) !== 'undefined') {
       if (command[1].indexOf('d') > 0) {
         var diceRoll = command[1].split('d');
