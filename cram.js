@@ -1,13 +1,18 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-var commandCharacter = ';';
+var commandCharacter = '=';
 
 var commands = [
   {
     name: "help",
     usage: commandCharacter + "help <command-name>",
     description: "Sends you a list of commands through private message or tells the usage of a specified command."
+  },
+  {
+    name: "invite",
+    usage: commandCharacter + "invite",
+    description: "Get an invite link to invite the bot to your server."
   },
   {
     name: "roll",
@@ -65,6 +70,8 @@ client.on('message', message => {
       }
       message.author.send(helpString, {code: true});
     }
+  } else if (command[0] === commandCharacter + 'invite') {
+    message.reply("Here is my invite link: \nhttps://discordapp.com/oauth2/authorize?client_id=203440659728826368&scope=bot&permissions=67230720");
   } else if (command[0] === commandCharacter + 'roll') {
     if (typeof(command[1]) !== 'undefined') {
       if (command[1].indexOf('d') > 0) {
