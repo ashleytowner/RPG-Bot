@@ -64,7 +64,7 @@ client.on('message', message => {
         message.author.send("Usage: " + getCommandInfo(command[1]).usage);
       }
     } else {
-      var helpString = "";
+      var helpString = "I am a bot designed to make it easier to play RPGs over Discord. I was created by Towja.\n";
       for (x in commands) {
         helpString += commands[x].name + ": " + commands[x].description + "\n";
       }
