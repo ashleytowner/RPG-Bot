@@ -1,14 +1,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-var commandCharacter = '=';
+var commandCharacter = '$';
 
 var commands = [
-  {
-    name: "character",
-    usage: commandCharacter + "character [add|view|roll] [weapon/armor|stat|stat]",
-    description: "Either adds a weapon or armor to your character, or displays a stat or rolls an ability check."
-  },
   {
     name: "help",
     usage: commandCharacter + "help <command-name>",
@@ -26,8 +21,8 @@ var commands = [
   },
   {
     name: "roll",
-    usage:  commandCharacter + "roll [number]d[size]",
-    description: "Rolls [number] dice with [size] sides."
+    usage:  commandCharacter + "roll [number]d[size]<+/- integer>",
+    description: "Rolls [number] dice with [size] sides and adds integers."
   }
 ];
 
@@ -131,7 +126,7 @@ function getRandomInt (min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function rollDice (count, size) {
+function rollDice (count, size, mod = 0) {
   var rolls = [];
   var total = 0;
   for(var i = count; i > 0; i--) {
@@ -139,6 +134,7 @@ function rollDice (count, size) {
     rolls.push(roll);
     total += roll;
   }
+  total += mod;
   var rollSet = {
     array: rolls,
     total: total
@@ -178,9 +174,28 @@ client.on('message', message => {
     if (typeof(command[1]) !== 'undefined') {
       if (command[1].indexOf('d') > 0) {
         var diceRoll = command[1].split('d');
+
+        // Attempt to add & subtract numbers
+        var parts = [];
+        if (diceRoll[1].indexOf('+') > 0) {
+          parts = diceRoll[1].split('+');
+          parts[1] = +parts[1];
+        } else if (diceRoll[1].indexOf('-') > 0) {
+          parts = diceRoll[1].split('-');
+          parts[1] = +parts[1] * -1;
+        } else {
+          parts.push(diceRoll[1]);
+        }
+        console.log(JSON.stringify(parts));
         var count = +diceRoll[0];
-        var size = +diceRoll[1];
-        var roll = rollDice(count, size);
+        var size = +parts[0];
+        var roll;
+        if (parts[1]) {
+          roll = rollDice(count, size, parts[1]);
+        } else {
+          roll = rollDice(count, size);
+        }
+        var modText = "";
         message.reply("You rolled " + roll.total + " " + JSON.stringify(roll.array));
       } else {
         message.reply("Usage: " + getCommandInfo("roll").usage, {code: true});
