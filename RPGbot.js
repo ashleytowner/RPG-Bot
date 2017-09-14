@@ -5,6 +5,11 @@ var commandCharacter = '=';
 
 var commands = [
   {
+    name: "character",
+    usage: commandCharacter + "character [add|view|roll] [weapon/armor|stat|stat]",
+    description: "Either adds a weapon or armor to your character, or displays a stat or rolls an ability check."
+  },
+  {
     name: "help",
     usage: commandCharacter + "help <command-name>",
     description: "Sends you a list of commands through private message or tells the usage of a specified command."
@@ -108,6 +113,8 @@ function character(name, phy, men, vit, luc, skills) {
   return this;
 }
 
+var characterDictionary = [];
+
 function getCommandInfo(cmdName) {
   for (x in commands) {
     if (commands[x].name === cmdName) {
@@ -162,7 +169,10 @@ client.on('message', message => {
   } else if (command[0] === commandCharacter + 'newcharacter') {
     if (command[1] != null && command[2] != null && command[3] != null && command[4] != null && command[5] != null && command[6] != null && command[7] != null && command[8] != null) {
       var char = character(command[1], command[2], command[3], command[4], command[5], [command[6], command[7], command[8]]);
+      characterDictionary.push({"user": message.author.id, "character":char});
       message.reply(char.toString(), {code: true});
+    } else {
+      message.reply("Usage: " + getCommandInfo("newcharacter").usage, {code: true});
     }
   } else if (command[0] === commandCharacter + 'roll') {
     if (typeof(command[1]) !== 'undefined') {
