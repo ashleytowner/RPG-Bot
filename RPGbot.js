@@ -14,15 +14,20 @@ var commands = [
     usage: commandCharacter + "invite",
     description: "Get an invite link to invite the bot to your server."
   },
-  {
+  /*{
     name: "newcharacter",
     usage: commandCharacter + "newcharacter [name] [physical] [mental] [vitality] [luck] [skill1] [skill2] [skill3]",
     description: "Creates a new character in the OnePageD20 system, created by Towja."
-  },
+  },*/
   {
     name: "roll",
     usage:  commandCharacter + "roll [number]d[size]<+/- integer>",
     description: "Rolls [number] dice with [size] sides and adds integers."
+  },
+  {
+    name: "rules",
+    usage: commandCharacter + "rules",
+    description: "Sends a link to the latest rules file for the OnePageD20 ruleset."
   }
 ];
 
@@ -69,6 +74,7 @@ function character(name, phy, men, vit, luc, skills) {
   this.science = men;
   this.subterfuge = Math.floor((men + luc) / 2);
   this.survival = Math.floor((men + phy) / 2);
+  this.technical = Math.floor((men + phy) / 2);
   for (x in skills) {
     switch (skills[x]) {
       case "athletics":
@@ -95,6 +101,9 @@ function character(name, phy, men, vit, luc, skills) {
       case "survival":
         this.survival++;
         break;
+      case "technical":
+        this.technical++;
+        break;
       default:
         break;
     }
@@ -103,7 +112,7 @@ function character(name, phy, men, vit, luc, skills) {
     return "Name: " + this.name + "\nPHY: " + this.physical + "   MEN: " + this.mental + "\nVIT: " + this.vitality +
     "   LUC: " + this.luck + "\nHP: " + this.hp + "/" + this.maxHp + "\nDefense: " + this.defense + "\nSkills:\n- Athletics: " + this.athletics + "\n- Lore: " + this.lore + "\n- Martial: " + this.martial +
     "\n- Medicine: " + this.medicine + "\n- Rhetoric: " + this.rhetoric + "\n- Science: " + this.science + "\n- subterfuge: " + this.subterfuge +
-    "\n- Survival: " + this.survival;
+    "\n- Survival: " + this.survival + "\n- Technical: " + this.technical;
   }
   return this;
 }
@@ -162,7 +171,7 @@ client.on('message', message => {
     }
   } else if (command[0] === commandCharacter + 'invite') {
     message.reply("Here is my invite link: \nhttps://discordapp.com/oauth2/authorize?client_id=203440659728826368&scope=bot&permissions=67230720");
-  } else if (command[0] === commandCharacter + 'newcharacter') {
+  } /*else if (command[0] === commandCharacter + 'newcharacter') {
     if (command[1] != null && command[2] != null && command[3] != null && command[4] != null && command[5] != null && command[6] != null && command[7] != null && command[8] != null) {
       var char = character(command[1], command[2], command[3], command[4], command[5], [command[6], command[7], command[8]]);
       characterDictionary.push({"user": message.author.id, "character":char});
@@ -170,7 +179,7 @@ client.on('message', message => {
     } else {
       message.reply("Usage: " + getCommandInfo("newcharacter").usage, {code: true});
     }
-  } else if (command[0] === commandCharacter + 'roll') {
+  }*/ else if (command[0] === commandCharacter + 'roll') {
     if (typeof(command[1]) !== 'undefined') {
       if (command[1].indexOf('d') > 0) {
         var diceRoll = command[1].split('d');
@@ -203,6 +212,8 @@ client.on('message', message => {
     } else {
       message.reply("Usage: " + getCommandInfo("roll").usage, {code: true});
     }
+  } else if (command[0] === commandCharacter + 'rules') {
+    message.reply("Here is a link to the rules for OnePageD20, a one-page RPG system written by Towja: https://goo.gl/g69WQY");
   }
 });
 
