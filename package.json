@@ -4,7 +4,7 @@
   "description": "A bot for use on Discord to help out with running RPGs.",
   "main": "RPGbot.js",
   "scripts": {
-    "test": "$help"
+    "start": "RPGbot.js"
   },
   "repository": {
     "type": "git",
