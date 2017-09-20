@@ -1,1 +1,1 @@
-web: npm RPGbot.js
+worker: npm RPGbot.js
