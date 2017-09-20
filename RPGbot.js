@@ -156,8 +156,16 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
+  
   var command = message.content.split(" ");
-  if (command[0] === commandCharacter + 'help') {
+  if (command[0] === commandCharacter + 'disconnect') {
+    if (message.member.permissions.has("ADMINISTRATOR")) {
+      message.reply("Okay, goodbye!");
+      client.destroy();
+    } else {
+      message.reply("I'm sorry, but you can't tell me to do that.");
+    }
+  } else if (command[0] === commandCharacter + 'help') {
     if (getCommandInfo(command[1]) != null) {
       if (getCommandInfo(command[1]) != null) {
         message.reply("Usage: " + getCommandInfo(command[1]).usage + "\n\n" + getCommandInfo(command[1]).description, {code: true});
