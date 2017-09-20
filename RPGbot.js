@@ -151,13 +151,30 @@ function rollDice (count, size, mod = 0) {
   return rollSet;
 }
 
+var fs = require('fs');
+var logger = fs.createWriteStream('logs/chat.log', {
+  flags: 'a' // 'a' means appending (old data will be preserved)
+});
+
+function LogLine(line) {
+  logger.write(line + "\n");
+  console.log(line);
+}
+
 client.on('ready', () => {
   console.log('Powered On!');
 });
 
 client.on('message', message => {
-  
   var command = message.content.split(" ");
+  var date = new Date();
+
+  var logText = "(" + date.getFullYear() + "-" + (1 - - date.getMonth()) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes()
+  + ":" + date.getSeconds() + "." + date.getMilliseconds() + ")"
+  + " {" + message.guild.name + "} [#" + message.channel.name + "] " + message.author.username + ": " + message.content;
+
+  LogLine(logText);
+
   if (command[0] === commandCharacter + 'disconnect') {
     if (message.member.permissions.has("ADMINISTRATOR")) {
       message.reply("Okay, goodbye!");
