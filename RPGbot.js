@@ -14,11 +14,6 @@ var commands = [
     usage: commandCharacter + "invite",
     description: "Get an invite link to invite the bot to your server."
   },
-  /*{
-    name: "newcharacter",
-    usage: commandCharacter + "newcharacter [name] [physical] [mental] [vitality] [luck] [skill1] [skill2] [skill3]",
-    description: "Creates a new character in the OnePageD20 system, created by Towja."
-  },*/
   {
     name: "roll",
     usage:  commandCharacter + "roll [number]d[size]<+/- integer>",
@@ -162,16 +157,24 @@ function LogLine(line) {
 }
 
 client.on('ready', () => {
-  console.log('Powered On!');
+  console.log('Online!');
+  client.user.setPresence({status: 'online', game: {name: commandCharacter + 'help'}});
 });
 
 client.on('message', message => {
   var command = message.content.split(" ");
   var date = new Date();
 
-  var logText = "(" + date.getFullYear() + "-" + (1 - - date.getMonth()) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes()
-  + ":" + date.getSeconds() + "." + date.getMilliseconds() + ")"
-  + " {" + message.guild.name + "} [#" + message.channel.name + "] " + message.author.username + ": " + message.content;
+  var logText = "";
+  if (message.guild != null) {
+    logText = "(" + date.getFullYear() + "-" + (1 - - date.getMonth()) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes()
+    + ":" + date.getSeconds() + "." + date.getMilliseconds() + ")"
+    + " {" + message.guild.name + "} [#" + message.channel.name + "] " + message.author.username + ": " + message.content;
+  } else {
+    logText = "(" + date.getFullYear() + "-" + (1 - - date.getMonth()) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes()
+    + ":" + date.getSeconds() + "." + date.getMilliseconds() + ")"
+    + " {Private Message} [" + message.channel.recipient.username + "] " + message.author.username + ": " + message.content;
+  }
 
   LogLine(logText);
 
