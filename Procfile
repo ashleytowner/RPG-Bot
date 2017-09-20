@@ -1,1 +1,1 @@
-worker: npm RPGbot.js
+worker: node RPGbot.js
