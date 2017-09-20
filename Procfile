@@ -1,1 +1,1 @@
-web: node RPGbot.js
+web: npm RPGbot.js
