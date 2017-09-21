@@ -4,7 +4,7 @@ const client = new Discord.Client();
 var clientId = 'MjAzNDQwNzEwMzg3NDk5MDA4.DJqpog.9dAJaf-BVxbMqq2ihtuo7YrMCYA';
 // The name of the bot.
 var botName = "RPGBot";
-// A list of authors. 
+// A list of authors.
 var authors = [
   {name: "Towja"},
   this.toString = function () {
@@ -72,7 +72,7 @@ var commands = [
     name: "shutdown",
     usage: commandCharacter + "shutdown",
     description: "Causes " + botName + " to shut down and disconnect from all servers. Can only be run by approved users."
-  }
+  },
   {
     name: "help",
     usage: commandCharacter + "help <command-name>",
