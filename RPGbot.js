@@ -142,10 +142,11 @@ client.on('message', message => {
   else if (command[0] === commandCharacter + 'help') {
     if (getCommandInfo(command[1]) != null) {
       if (getCommandInfo(command[1]) != null) {
-        message.reply("Usage: " + getCommandInfo(command[1]).usage + "\n\n" + getCommandInfo(command[1]).description, {code: true});
+        // TODO: Fix error causing bot to crash when the $help command is run. 
+        message.reply("Usage: " + commands.getCommandInfo(command[1]).usage + "\n\n" + commands.getCommandInfo(command[1]).description, {code: true});
       }
     } else {
-      var helpString = "I am a bot designed to make it easier to play RPGs over Discord. I was created by " + authors.toString() + ".\n\n";
+      var helpString = "I am a bot designed to make it easier to play RPGs over Discord. I was created by Towja.\n\n";
       for (x in commands) {
         helpString += "- " + commands[x].name + ": " + commands[x].description + "\n";
       }
