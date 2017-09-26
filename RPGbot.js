@@ -89,11 +89,6 @@ var commands = [
     description: "Rolls [number] dice with [size] sides and adds integers."
   },
   {
-    name: "rules",
-    usage: commandCharacter + "rules",
-    description: "Sends a link to the latest rules file for the OnePageD20 ruleset."
-  },
-  {
     name: "shutdown",
     usage: commandCharacter + "shutdown",
     description: "Causes " + botName + " to shut down and disconnect from all servers. Can only be run by approved users."
@@ -192,10 +187,6 @@ client.on('message', message => {
     } else {
       message.reply("Usage: " + getCommandInfo("roll").usage, {code: true});
     }
-  }
-  // rules command.
-  else if (command[0] === commandCharacter + 'rules') {
-    message.reply("Here is a link to the rules for OnePageD20, a one-page RPG system written by Towja: https://goo.gl/g69WQY");
   }
   // shutdown command.
   else if (command[0] === commandCharacter + 'shutdown') {
