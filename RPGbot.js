@@ -2,8 +2,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 var clientId = 'MjAzNDQwNzEwMzg3NDk5MDA4.DJqpog.9dAJaf-BVxbMqq2ihtuo7YrMCYA';
-// The name of the bot.
-var botName = "RPGBot";
+// Bot Info from the config file.
+var fs = require('fs');
+var botInfo = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
 // A list of authors.
 var authors = [
   {name: "Towja"},
@@ -27,7 +28,6 @@ var authors = [
 ]
 
 // Defines the logger, allowing for additions to the chat log file.
-var fs = require('fs');
 var logger = fs.createWriteStream('logs/chat.log', {
   flags: 'a' // 'a' means appending (old data will be preserved)
 });
@@ -71,7 +71,7 @@ var commands = [
   {
     name: "about",
     usage: commandCharacter + "about",
-    description: "Gives you information about the bot."
+    description: "Gives you information about " + botInfo.name
   },
   {
     name: "help",
@@ -91,7 +91,7 @@ var commands = [
   {
     name: "shutdown",
     usage: commandCharacter + "shutdown",
-    description: "Causes " + botName + " to shut down and disconnect from all servers. Can only be run by approved users."
+    description: "Causes " + botInfo.name + " to shut down and disconnect from all servers. Can only be run by approved users."
   }
 ];
 
@@ -132,8 +132,7 @@ client.on('message', message => {
   // Below are all of the commands. NOTE: In alphabetical order.
   // about command.
   if (command[0] === commandCharacter + 'about') {
-    var info = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
-    message.reply("My name is " + info.name + " (v" + info.version + "). " + info.description + "\nTo find out more go to " + info.homepage);
+    message.reply("My name is " + botInfo.name + " (v" + botInfo.version + "). " + botInfo.description + "\nTo find out more go to " + botInfo.homepage);
   }
   // help command.
   else if (command[0] === commandCharacter + 'help') {
