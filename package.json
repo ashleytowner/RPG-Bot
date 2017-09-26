@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/Towja/RPG-Bot/issues"
   },
-  "homepage": "https://github.com/Towja/RPG-Bot#readme"
+  "homepage": "https://github.com/Towja/RPG-Bot#readme",
+  "dependencies": {
+    "discord.js": "^11.2.1",
+    "fs": "0.0.1-security"
+  }
 }
