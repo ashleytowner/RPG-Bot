@@ -1,0 +1,23 @@
+{
+  "name": "RPG Bot",
+  "version": "1.0",
+  "description": "I am a bot for use on Discord to help out with running RPGs.",
+  "main": "RPGbot.js",
+  "scripts": {
+    "start": "RPGbot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Towja/RPG-Bot.git"
+  },
+  "keywords": [
+    "Bot",
+    "RPG"
+  ],
+  "author": "Towja",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Towja/RPG-Bot/issues"
+  },
+  "homepage": "https://github.com/Towja/RPG-Bot#readme"
+}
