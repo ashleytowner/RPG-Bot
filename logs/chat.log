@@ -1,0 +1,103 @@
+(2017-9-21 0:37:58.174) {The Hangout} [#bot-stuff] Towja: Hello
+(2017-9-21 0:38:14.303) {The Hangout} [#general] Towja: Testing bot
+(2017-9-21 0:39:42.651) {The Hangout} [#bot-stuff] Towja: $invite
+(2017-9-21 0:39:43.277) {The Hangout} [#bot-stuff] RPGBot: <@145420056975769601>, Here is my invite link: 
+https://discordapp.com/oauth2/authorize?client_id=203440659728826368&scope=bot&permissions=67230720
+(2017-9-21 0:41:1.380) {USSR} [#general] Mee6: <@203440710387499008>, Welcome to **USSR**! Have a great time here :wink: !
+(2017-9-21 0:50:30.478) {The Hangout} [#bot-stuff] Towja: $disconnect
+(2017-9-21 0:51:9.235) {The Hangout} [#bot-stuff] Towja: $disconnect
+(2017-9-21 1:9:36.139) {The Hangout} [#bot-stuff] Towja: $help
+(2017-9-21 1:10:27.571) {The Hangout} [#bot-stuff] Towja: Beep boop
+(2017-9-21 1:12:48.322) {The Hangout} [#bot-stuff] Towja: $help
+undefined
+(2017-9-21 1:19:28.561) {Private Message} [Towja -> Towja] Towja: Ay
+(2017-9-21 1:19:45.977) {Private Message} [Towja -> Towja] Towja: $help
+(2017-9-21 1:20:43.210) {Private Message} [Towja] Towja: $help
+(2017-9-21 1:21:18.712) {Private Message} Towja: $help
+(2017-9-21 1:21:19.42) {Private Message} RPGBot: ```
+I am a bot designed to make it easier to play RPGs over Discord. I was created by Towja.
+
+- help: Sends you a list of commands through private message or tells the usage of a specified command.
+- invite: Get an invite link to invite the bot to your server.
+- roll: Rolls [number] dice with [size] sides and adds integers.
+- rules: Sends a link to the latest rules file for the OnePageD20 ruleset.
+
+```
+(2017-9-21 1:22:41.641) {Private Message} [undefined] Towja: $help
+(2017-9-21 1:22:41.978) {Private Message} [undefined] RPGBot: ```
+I am a bot designed to make it easier to play RPGs over Discord. I was created by Towja.
+
+- help: Sends you a list of commands through private message or tells the usage of a specified command.
+- invite: Get an invite link to invite the bot to your server.
+- roll: Rolls [number] dice with [size] sides and adds integers.
+- rules: Sends a link to the latest rules file for the OnePageD20 ruleset.
+
+```
+(2017-9-21 1:23:46.597) {Private Message} [<@145420056975769601>] Towja: $help
+(2017-9-21 1:23:46.964) {Private Message} [<@145420056975769601>] RPGBot: ```
+I am a bot designed to make it easier to play RPGs over Discord. I was created by Towja.
+
+- help: Sends you a list of commands through private message or tells the usage of a specified command.
+- invite: Get an invite link to invite the bot to your server.
+- roll: Rolls [number] dice with [size] sides and adds integers.
+- rules: Sends a link to the latest rules file for the OnePageD20 ruleset.
+
+```
+(2017-9-21 1:23:57.653) {Private Message} [<@145420056975769601>] Towja: <@145420056975769601>
+(2017-9-21 1:28:47.302) {Private Message} [Towja] Towja: $help
+(2017-9-21 1:28:47.703) {Private Message} [Towja] RPGBot: ```
+I am a bot designed to make it easier to play RPGs over Discord. I was created by Towja.
+
+- help: Sends you a list of commands through private message or tells the usage of a specified command.
+- invite: Get an invite link to invite the bot to your server.
+- roll: Rolls [number] dice with [size] sides and adds integers.
+- rules: Sends a link to the latest rules file for the OnePageD20 ruleset.
+
+```
+(2017-9-21 16:40:9.284) {The Hangout} [#bot-stuff] Towja: $help
+(2017-9-21 16:41:45.778) {The Hangout} [#bot-stuff] Towja: $help
+(2017-9-21 16:42:19.32) {Private Message} [Towja] Towja: $roll 2d4
+(2017-9-21 16:42:19.409) {Private Message} [Towja] RPGBot: You rolled 5 [1,4]
+(2017-9-21 16:42:25.18) {Private Message} [Towja] Towja: $invite
+(2017-9-21 16:42:25.363) {Private Message} [Towja] RPGBot: Here is my invite link: 
+https://discordapp.com/oauth2/authorize?client_id=203440659728826368&scope=bot&permissions=67230720
+(2017-9-21 16:42:28.28) {Private Message} [Towja] Towja: $rules
+(2017-9-21 16:42:28.386) {Private Message} [Towja] RPGBot: Here is a link to the rules for OnePageD20, a one-page RPG system written by Towja: https://goo.gl/g69WQY
+(2017-9-21 16:43:32.358) {Private Message} [Towja] Towja: $help rules
+(2017-9-21 16:45:1.185) {Private Message} [Towja] Towja: $help
+(2017-9-26 16:18:8.38) {Private Message} [Towja] Towja: $help
+(2017-9-26 16:18:53.510) {Private Message} [Towja] Towja: $roll 2d6
+(2017-9-26 16:18:55.136) {Private Message} [Towja] RPGBot: You rolled 8 [3,5]
+(2017-9-26 16:18:59.309) {Private Message} [Towja] Towja: $about
+(2017-9-26 16:18:59.825) {Private Message} [Towja] RPGBot: My name is RPG Bot (v1.0). I am a bot for use on Discord to help out with running RPGs.
+To find out more go to https://github.com/Towja/RPG-Bot#readme
+(2017-9-26 16:20:19.3) {Private Message} [Towja] Towja: $help
+(2017-9-26 16:25:17.508) {Private Message} [Towja] Towja: $help
+(2017-9-26 16:25:18.711) {Private Message} [Towja] RPGBot: ```
+I am a bot designed to make it easier to play RPGs over Discord. I was created by Towja.
+
+- about: Gives you information about the bot.
+- help: Sends you a list of commands through private message or tells the usage of a specified command.
+- invite: Get an invite link to invite the bot to your server.
+- roll: Rolls [number] dice with [size] sides and adds integers.
+- rules: Sends a link to the latest rules file for the OnePageD20 ruleset.
+- shutdown: Causes RPGBot to shut down and disconnect from all servers. Can only be run by approved users.
+
+```
+(2017-9-26 16:25:24.334) {Private Message} [Towja] Towja: $help about
+(2017-9-26 16:25:24.729) {Private Message} [Towja] RPGBot: ```
+Usage: $about
+
+Gives you information about the bot.
+```
+(2017-9-26 16:30:2.857) {Private Message} [Towja] Towja: $help
+(2017-9-26 16:30:3.927) {Private Message} [Towja] RPGBot: ```
+I am a bot designed to make it easier to play RPGs over Discord. I was created by Towja.
+
+- about: Gives you information about the bot.
+- help: Sends you a list of commands through private message or tells the usage of a specified command.
+- invite: Get an invite link to invite the bot to your server.
+- roll: Rolls [number] dice with [size] sides and adds integers.
+- shutdown: Causes RPG Bot to shut down and disconnect from all servers. Can only be run by approved users.
+
+```
