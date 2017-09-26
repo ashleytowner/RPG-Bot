@@ -2,8 +2,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 var clientId = 'MjAzNDQwNzEwMzg3NDk5MDA4.DJqpog.9dAJaf-BVxbMqq2ihtuo7YrMCYA';
-// The name of the bot.
-var botName = "RPGBot";
+// Bot Info from the config file.
+var fs = require('fs');
+var botInfo = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
 // A list of authors.
 var authors = [
   {name: "Towja"},
@@ -27,7 +28,6 @@ var authors = [
 ]
 
 // Defines the logger, allowing for additions to the chat log file.
-var fs = require('fs');
 var logger = fs.createWriteStream('logs/chat.log', {
   flags: 'a' // 'a' means appending (old data will be preserved)
 });
@@ -71,7 +71,7 @@ var commands = [
   {
     name: "about",
     usage: commandCharacter + "about",
-    description: "Gives you information about the bot."
+    description: "Gives you information about " + botInfo.name
   },
   {
     name: "help",
@@ -89,25 +89,21 @@ var commands = [
     description: "Rolls [number] dice with [size] sides and adds integers."
   },
   {
-    name: "rules",
-    usage: commandCharacter + "rules",
-    description: "Sends a link to the latest rules file for the OnePageD20 ruleset."
-  },
-  // Function to find the information about a command by command name.
-  this.getCommandInfo = function (cmdName) {
-    for (x in this) {
-      if (this[x].name === cmdName) {
-        return this[x];
-      }
-    }
-    return null;
-  },
-  {
     name: "shutdown",
     usage: commandCharacter + "shutdown",
-    description: "Causes " + botName + " to shut down and disconnect from all servers. Can only be run by approved users."
+    description: "Causes " + botInfo.name + " to shut down and disconnect from all servers. Can only be run by approved users."
   }
 ];
+
+// Function to find the information about a command by command name.
+function getCommandInfo (cmdName) {
+  for (x in commands) {
+    if (commands[x].name === cmdName) {
+      return commands[x];
+    }
+  }
+  return null;
+}
 
 // Run this code when the bot is ready.
 client.on('ready', () => {
@@ -136,15 +132,14 @@ client.on('message', message => {
   // Below are all of the commands. NOTE: In alphabetical order.
   // about command.
   if (command[0] === commandCharacter + 'about') {
-    var info = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
-    message.reply("My name is " + info.name + " (v" + info.version + "). " + info.description + "\nTo find out more go to " info.homepage);
+    message.reply("My name is " + botInfo.name + " (v" + botInfo.version + "). " + botInfo.description + "\nTo find out more go to " + botInfo.homepage);
   }
   // help command.
   else if (command[0] === commandCharacter + 'help') {
     if (getCommandInfo(command[1]) != null) {
       if (getCommandInfo(command[1]) != null) {
         // TODO: Fix error causing bot to crash when the $help command is run.
-        message.reply("Usage: " + commands.getCommandInfo(command[1]).usage + "\n\n" + commands.getCommandInfo(command[1]).description, {code: true});
+        message.reply("Usage: " + getCommandInfo(command[1]).usage + "\n\n" + getCommandInfo(command[1]).description, {code: true});
       }
     } else {
       var helpString = "I am a bot designed to make it easier to play RPGs over Discord. I was created by Towja.\n\n";
@@ -191,10 +186,6 @@ client.on('message', message => {
     } else {
       message.reply("Usage: " + getCommandInfo("roll").usage, {code: true});
     }
-  }
-  // rules command.
-  else if (command[0] === commandCharacter + 'rules') {
-    message.reply("Here is a link to the rules for OnePageD20, a one-page RPG system written by Towja: https://goo.gl/g69WQY");
   }
   // shutdown command.
   else if (command[0] === commandCharacter + 'shutdown') {
