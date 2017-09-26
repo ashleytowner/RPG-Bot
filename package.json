@@ -1,14 +1,14 @@
 {
-  "name": "rpgbot",
-  "version": "1.0.0",
-  "description": "A bot for use on Discord to help out with running RPGs.",
+  "name": "RPG Bot",
+  "version": "1.1",
+  "description": "I am a bot for use on Discord to help out with running RPGs.",
   "main": "RPGbot.js",
   "scripts": {
     "start": "RPGbot.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Towja/CRAM-bot.git"
+    "url": "git+https://github.com/Towja/RPG-Bot.git"
   },
   "keywords": [
     "Bot",
@@ -17,7 +17,7 @@
   "author": "Towja",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/Towja/CRAM-bot/issues"
+    "url": "https://github.com/Towja/RPG-Bot/issues"
   },
-  "homepage": "https://github.com/Towja/CRAM-bot#readme"
+  "homepage": "https://github.com/Towja/RPG-Bot#readme"
 }

@@ -69,9 +69,9 @@ var commandCharacter = '$';
 // A list of commands and their descriptions for the help command. NOTE: In Alphabetical Order.
 var commands = [
   {
-    name: "shutdown",
-    usage: commandCharacter + "shutdown",
-    description: "Causes " + botName + " to shut down and disconnect from all servers. Can only be run by approved users."
+    name: "about",
+    usage: commandCharacter + "about",
+    description: "Gives you information about the bot."
   },
   {
     name: "help",
@@ -101,6 +101,11 @@ var commands = [
       }
     }
     return null;
+  },
+  {
+    name: "shutdown",
+    usage: commandCharacter + "shutdown",
+    description: "Causes " + botName + " to shut down and disconnect from all servers. Can only be run by approved users."
   }
 ];
 
@@ -129,20 +134,16 @@ client.on('message', message => {
   }
   LogLine(logText);
   // Below are all of the commands. NOTE: In alphabetical order.
-  // disconnect command.
-  if (command[0] === commandCharacter + 'shutdown') {
-    if (message.member.permissions.has("ADMINISTRATOR")) {
-      message.reply("Okay, see you soon!");
-      client.destroy();
-    } else {
-      message.reply("I'm sorry, but you can't tell me to do that.");
-    }
+  // about command.
+  if (command[0] === commandCharacter + 'about') {
+    var info = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+    message.reply("My name is " + info.name + " (v" + info.version + "). " + info.description + "\nTo find out more go to " info.homepage);
   }
   // help command.
   else if (command[0] === commandCharacter + 'help') {
     if (getCommandInfo(command[1]) != null) {
       if (getCommandInfo(command[1]) != null) {
-        // TODO: Fix error causing bot to crash when the $help command is run. 
+        // TODO: Fix error causing bot to crash when the $help command is run.
         message.reply("Usage: " + commands.getCommandInfo(command[1]).usage + "\n\n" + commands.getCommandInfo(command[1]).description, {code: true});
       }
     } else {
@@ -194,6 +195,15 @@ client.on('message', message => {
   // rules command.
   else if (command[0] === commandCharacter + 'rules') {
     message.reply("Here is a link to the rules for OnePageD20, a one-page RPG system written by Towja: https://goo.gl/g69WQY");
+  }
+  // shutdown command.
+  else if (command[0] === commandCharacter + 'shutdown') {
+    if (message.member.permissions.has("ADMINISTRATOR")) {
+      message.reply("Okay, see you soon!");
+      client.destroy();
+    } else {
+      message.reply("I'm sorry, but you can't tell me to do that.");
+    }
   }
 });
 
