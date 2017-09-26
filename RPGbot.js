@@ -93,21 +93,22 @@ var commands = [
     usage: commandCharacter + "rules",
     description: "Sends a link to the latest rules file for the OnePageD20 ruleset."
   },
-  // Function to find the information about a command by command name.
-  this.getCommandInfo = function (cmdName) {
-    for (x in this) {
-      if (this[x].name === cmdName) {
-        return this[x];
-      }
-    }
-    return null;
-  },
   {
     name: "shutdown",
     usage: commandCharacter + "shutdown",
     description: "Causes " + botName + " to shut down and disconnect from all servers. Can only be run by approved users."
   }
 ];
+
+// Function to find the information about a command by command name.
+function getCommandInfo (cmdName) {
+  for (x in commands) {
+    if (commands[x].name === cmdName) {
+      return commands[x];
+    }
+  }
+  return null;
+}
 
 // Run this code when the bot is ready.
 client.on('ready', () => {
@@ -137,14 +138,14 @@ client.on('message', message => {
   // about command.
   if (command[0] === commandCharacter + 'about') {
     var info = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
-    message.reply("My name is " + info.name + " (v" + info.version + "). " + info.description + "\nTo find out more go to " info.homepage);
+    message.reply("My name is " + info.name + " (v" + info.version + "). " + info.description + "\nTo find out more go to " + info.homepage);
   }
   // help command.
   else if (command[0] === commandCharacter + 'help') {
     if (getCommandInfo(command[1]) != null) {
       if (getCommandInfo(command[1]) != null) {
         // TODO: Fix error causing bot to crash when the $help command is run.
-        message.reply("Usage: " + commands.getCommandInfo(command[1]).usage + "\n\n" + commands.getCommandInfo(command[1]).description, {code: true});
+        message.reply("Usage: " + getCommandInfo(command[1]).usage + "\n\n" + getCommandInfo(command[1]).description, {code: true});
       }
     } else {
       var helpString = "I am a bot designed to make it easier to play RPGs over Discord. I was created by Towja.\n\n";
