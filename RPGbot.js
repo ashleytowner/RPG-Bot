@@ -5,27 +5,6 @@ var clientId = 'MjAzNDQwNzEwMzg3NDk5MDA4.DJqpog.9dAJaf-BVxbMqq2ihtuo7YrMCYA';
 // Bot Info from the config file.
 var fs = require('fs');
 var botInfo = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
-// A list of authors.
-var authors = [
-  {name: "Towja"},
-  this.toString = function () {
-    var authorString = "";
-    for (x in this) {
-      if (this.length > 1) {
-        if (x == this.length - 1) {
-          authorString += this[x].name + " and ";
-        } else if (x == this.lenth) {
-          authorString += this[x].name;
-        } else {
-          authorString += this[x].name + ", ";
-        }
-      } else {
-        authorString += this[x].name;
-      }
-    }
-    return authorString;
-  }
-]
 
 // Defines the logger, allowing for additions to the chat log file.
 var logger = fs.createWriteStream('logs/chat.log', {
@@ -142,7 +121,7 @@ client.on('message', message => {
         message.reply("Usage: " + getCommandInfo(command[1]).usage + "\n\n" + getCommandInfo(command[1]).description, {code: true});
       }
     } else {
-      var helpString = "I am a bot designed to make it easier to play RPGs over Discord. I was created by Towja.\n\n";
+      var helpString = "I am a bot designed to make it easier to play RPGs over Discord. I was created by " + botInfo.author + ".\n\n";
       for (x in commands) {
         helpString += "- " + commands[x].name + ": " + commands[x].description + "\n";
       }
@@ -189,7 +168,7 @@ client.on('message', message => {
   }
   // shutdown command.
   else if (command[0] === commandCharacter + 'shutdown') {
-    if (message.member.permissions.has("ADMINISTRATOR")) {
+    if (message.author.id == "145420056975769601") {
       message.reply("Okay, see you soon!");
       client.destroy();
     } else {
