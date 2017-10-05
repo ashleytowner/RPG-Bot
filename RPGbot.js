@@ -1,7 +1,7 @@
 // Setup Information
 const Discord = require('discord.js');
 const client = new Discord.Client();
-var clientId = 'MjAzNDQwNzEwMzg3NDk5MDA4.DJqpog.9dAJaf-BVxbMqq2ihtuo7YrMCYA';
+var clientId = 'MjM4MjQ0Nzg5OTk1MTc1OTM2.DLcYVw.B_zOkjaRyAZ-FvwHlZmEY3wxAik'; //'MjAzNDQwNzEwMzg3NDk5MDA4.DJqpog.9dAJaf-BVxbMqq2ihtuo7YrMCYA';
 // Bot Info from the config file.
 var fs = require('fs');
 var botInfo = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
@@ -32,7 +32,7 @@ function rollDice (count, size, mod = 0) {
 }
 
 // The character that prefixes commands
-var commandCharacter = '$';
+var commandCharacter = '=';
 
 // A list of commands and their descriptions for the help command. NOTE: In Alphabetical Order.
 var commands = [
@@ -42,9 +42,9 @@ var commands = [
     description: "Gives you information about " + botInfo.name + "."
   },
   {
-    name: "flipcoin",
-    usage: commandCharacter + "flipcoin",
-    description: "Flips a coin."
+    name: "coinflip",
+    usage: commandCharacter + "coinflip <amount>",
+    description: "Flips <amount> number of coins. If <amount> is left blank, flips one coin."
   },
   {
     name: "help",
@@ -109,18 +109,30 @@ client.on('message', message => {
   }
   // coinflip command
   else if (command[0] === commandCharacter + 'coinflip') {
-    var flip = getRandomInt(0, 1);
-    switch (flip) {
-      case 0:
-      message.reply("The coin landed on heads.");
-      break;
-      case 1:
-      message.reply("The coin landed on tails.");
-      break;
-      default:
-      message.reply("Wow! The coin landed on the edge!");
-      break;
+    var flips = 1;
+    var flips = parseInt(command[1]);
+    if (!(flips >= 1)) {
+      flips = 1;
     }
+    var flipstring = "";
+    for (i = flips; i > 0; i--) {
+      var result = getRandomInt(0, 1);
+      switch (result) {
+        case 0:
+        flipstring += " heads";
+        break;
+        case 1:
+        flipstring += " tails";
+        break;
+        default:
+        flipstring += " coin landed on the edge";
+        break;
+      }
+      if (i > 1) {
+        flipstring += ",";
+      }
+    }
+    message.reply("You flipped" + flipstring);
   }
   // help command.
   else if (command[0] === commandCharacter + 'help') {
