@@ -6,11 +6,6 @@ var clientId = 'MjAzNDQwNzEwMzg3NDk5MDA4.DJqpog.9dAJaf-BVxbMqq2ihtuo7YrMCYA';
 var fs = require('fs');
 var botInfo = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
 
-// Defines the logger, allowing for additions to the chat log file.
-var logger = fs.createWriteStream('logs/chat.log', {
-  flags: 'a' // 'a' means appending (old data will be preserved)
-});
-
 // Function to get a random integer between [min] and [max], inclusive.
 function getRandomInt (min, max) {
   max++;
@@ -34,12 +29,6 @@ function rollDice (count, size, mod = 0) {
     total: total
   };
   return rollSet;
-}
-
-// A function to log to both the chat log and the console at once.
-function LogLine(line) {
-  logger.write(line + "\n");
-  console.log(line);
 }
 
 // The character that prefixes commands
@@ -112,7 +101,7 @@ client.on('message', message => {
     + ":" + date.getSeconds() + "." + date.getMilliseconds() + ")"
     + " {Private Message} [" + message.channel.recipient.username + "] " + message.author.username + ": " + message.content;
   }
-  LogLine(logText);
+  console.log(logText);
   // Below are all of the commands. NOTE: In alphabetical order.
   // about command.
   if (command[0] === commandCharacter + 'about') {
