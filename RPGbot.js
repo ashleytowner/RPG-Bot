@@ -115,14 +115,18 @@ client.on('message', message => {
       flips = 1;
     }
     var flipstring = "";
+    var heads = 0;
+    var tails = 0;
     for (i = flips; i > 0; i--) {
       var result = getRandomInt(0, 1);
       switch (result) {
         case 0:
         flipstring += " heads";
+        heads++;
         break;
         case 1:
         flipstring += " tails";
+        tails++;
         break;
         default:
         flipstring += " coin landed on the edge";
@@ -132,7 +136,7 @@ client.on('message', message => {
         flipstring += ",";
       }
     }
-    message.reply("You flipped" + flipstring);
+    message.reply("You flipped " + heads + " heads and " + tails + " tails (" + flipstring + ")");
   }
   // help command.
   else if (command[0] === commandCharacter + 'help') {
@@ -158,7 +162,7 @@ client.on('message', message => {
       if (command[1].indexOf('d') > 0) {
         var diceRoll = command[1].split('d');
 
-        // Attempt to add & subtract numbers
+        // Add & subtract numbers
         var parts = [];
         if (diceRoll[1].indexOf('+') > 0) {
           parts = diceRoll[1].split('+');
