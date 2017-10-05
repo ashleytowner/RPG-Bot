@@ -1,7 +1,7 @@
 // Setup Information
 const Discord = require('discord.js');
 const client = new Discord.Client();
-var clientId = 'MjM4MjQ0Nzg5OTk1MTc1OTM2.DLcYVw.B_zOkjaRyAZ-FvwHlZmEY3wxAik'; //'MjAzNDQwNzEwMzg3NDk5MDA4.DJqpog.9dAJaf-BVxbMqq2ihtuo7YrMCYA';
+var clientId = 'MjAzNDQwNzEwMzg3NDk5MDA4.DJqpog.9dAJaf-BVxbMqq2ihtuo7YrMCYA';
 // Bot Info from the config file.
 var fs = require('fs');
 var botInfo = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
@@ -32,7 +32,7 @@ function rollDice (count, size, mod = 0) {
 }
 
 // The character that prefixes commands
-var commandCharacter = '=';
+var commandCharacter = '$';
 
 // A list of commands and their descriptions for the help command. NOTE: In Alphabetical Order.
 var commands = [
