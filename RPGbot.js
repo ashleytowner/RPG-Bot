@@ -50,7 +50,12 @@ var commands = [
   {
     name: "about",
     usage: commandCharacter + "about",
-    description: "Gives you information about " + botInfo.name
+    description: "Gives you information about " + botInfo.name + "."
+  },
+  {
+    name: "flipcoin",
+    usage: commandCharacter + "flipcoin",
+    description: "Flips a coin."
   },
   {
     name: "help",
@@ -112,6 +117,21 @@ client.on('message', message => {
   // about command.
   if (command[0] === commandCharacter + 'about') {
     message.reply("My name is " + botInfo.name + " (v" + botInfo.version + "). " + botInfo.description + "\nTo find out more go to " + botInfo.homepage);
+  }
+  // coinflip command
+  else if (command[0] === commandCharacter + 'coinflip') {
+    var flip = getRandomInt(0, 1);
+    switch (flip) {
+      case 0:
+      message.reply("The coin landed on heads.");
+      break;
+      case 1:
+      message.reply("The coin landed on tails.");
+      break;
+      default:
+      message.reply("Wow! The coin landed on the edge!");
+      break;
+    }
   }
   // help command.
   else if (command[0] === commandCharacter + 'help') {
