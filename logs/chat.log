@@ -101,3 +101,11 @@ I am a bot designed to make it easier to play RPGs over Discord. I was created b
 - shutdown: Causes RPG Bot to shut down and disconnect from all servers. Can only be run by approved users.
 
 ```
+(2017-10-5 11:42:36.578) {The Hangout} [#bots] Towja: $coinflip
+(2017-10-5 11:42:37.234) {The Hangout} [#bots] General Bot: <@145420056975769601>, The coin landed on tails.
+(2017-10-5 11:42:41.414) {The Hangout} [#bots] Towja: $coinflip
+(2017-10-5 11:42:41.804) {The Hangout} [#bots] General Bot: <@145420056975769601>, The coin landed on tails.
+(2017-10-5 11:42:45.938) {The Hangout} [#bots] Towja: $coinflip
+(2017-10-5 11:42:46.387) {The Hangout} [#bots] General Bot: <@145420056975769601>, The coin landed on heads.
+(2017-10-5 11:42:56.792) {The Hangout} [#bots] Towja: Bye
+(2017-10-5 11:42:58.792) {The Hangout} [#bots] Towja: $shutdown
