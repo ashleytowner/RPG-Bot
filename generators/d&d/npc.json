@@ -1,5 +1,5 @@
 {
-  "format" : true,
+  "format" : "sub-heads",
   "gender" : [
     "male",
     "female"

@@ -2,7 +2,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 var fs = require('fs');
-var testing = process.env.TESTING;
+var testing = (typeof process.env.TESTING) !== "undefined" ? process.env.TESTING : true;
 var clientId = "";
 switch (testing) {
   case true:
@@ -173,10 +173,19 @@ client.on('message', message => {
         for (x in table) {
           if (x != "format") {
             var index = getRandomInt(0, table[x].length - 1);
-            if (format) {
+            switch (format) {
+              case "num-list":
+              result += ((amount - i) + 1) + ". " + table[x][index];
+              break;
+              case "plain-list":
+              result += "- " + table[x][index];
+              break;
+              case "sub-heads":
               result += x + ": " + table[x][index] + "\t";
-            } else {
+              break;
+              default:
               result += table[x][index];
+              break;
             }
           } else {
             format = table[x];
