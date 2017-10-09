@@ -2,7 +2,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 var fs = require('fs');
-var testing = false;
+var testing = true;
 var clientId = "";
 switch (testing) {
   case true:
@@ -157,19 +157,24 @@ client.on('message', message => {
   // Generate command.
   else if (command[0] === commandCharacter + 'generate') {
     if (command[1] != null && command[1] != "") {
-      var table = JSON.parse(fs.readFileSync('generators/' + command[1] + '.json', 'utf-8'));
+      var table = JSON.parse(fs.readFileSync('generators/tables.json', 'utf-8'));
+      try {
+        table = JSON.parse(fs.readFileSync('generators/' + command[1] + '.json', 'utf-8'));
+      } catch (e) {
+        console.log(e);
+      }
       var amount = parseInt(command[2]);
       if (!(amount >= 1)) {
         amount = 1;
       }
       var result = "";
       for (i = amount; i > 0; i--) {
-        result += ((amount - i) + 1) + ". ";
+        //result += ((amount - i) + 1) + ". ";
         for (x in table) {
-            var index = getRandomInt(0, table[x].length - 1);
-            result += x + ": " + table[x][index] + " | ";
+          var index = getRandomInt(0, table[x].length - 1);
+          result += x + ": " + table[x][index] + "\t"
         }
-        result += "\n";
+        result += "\n\n";
       }
       message.channel.send(result, {code: true});
     } else {
