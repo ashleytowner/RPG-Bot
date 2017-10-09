@@ -1,0 +1,42 @@
+{
+  "gender" : [
+    "male",
+    "female"
+  ],
+  "race" : [
+    "dwarf",
+    "elf",
+    "halfling",
+    "human",
+    "dragonborn",
+    "gnome",
+    "half-elf",
+    "half-orc",
+    "tiefling"
+  ],
+  "characteristic" : [
+    "absentminded",
+    "arrogant",
+    "boorish",
+    "chews something",
+    "clumsy",
+    "curious",
+    "dim-witted",
+    "fiddles and fidgets nervously",
+    "frequently uses the wrong word",
+    "friendly",
+    "irritable",
+    "prone to predictions of certaind doom",
+    "pronounced scar",
+    "slurs words",
+    "lisps",
+    "stutters",
+    "speaks loudly",
+    "whispers",
+    "squints",
+    "stares into distance",
+    "suspicious",
+    "uses colourful oaths and exclamations",
+    "uses flowery speech or long words"
+  ]
+}
