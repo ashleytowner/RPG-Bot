@@ -2,7 +2,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 var fs = require('fs');
-var testing = true;
+var testing = process.env.TESTING;
 var clientId = "";
 switch (testing) {
   case true:
@@ -169,10 +169,18 @@ client.on('message', message => {
       }
       var result = "";
       for (i = amount; i > 0; i--) {
-        //result += ((amount - i) + 1) + ". ";
+        var format = false;
         for (x in table) {
-          var index = getRandomInt(0, table[x].length - 1);
-          result += x + ": " + table[x][index] + "\t"
+          if (x != "format") {
+            var index = getRandomInt(0, table[x].length - 1);
+            if (format) {
+              result += x + ": " + table[x][index] + "\t";
+            } else {
+              result += table[x][index];
+            }
+          } else {
+            format = table[x];
+          }
         }
         result += "\n\n";
       }

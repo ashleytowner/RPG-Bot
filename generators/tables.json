@@ -1,5 +1,9 @@
 {
+  "format" : false,
+  "d&d/generic-name" : [
+    "- d&d/generic-name: A table for generating a very generic fantasy name. From the D&D 5e DM screen.\n\n"
+  ],
   "d&d/npc" : [
-    "A table for generating Dungeons and Dragons NPCs.\n"
+    "- d&d/npc: A table for generating Dungeons and Dragons NPCs.\n\n"
   ]
 }
