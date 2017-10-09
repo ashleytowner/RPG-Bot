@@ -168,30 +168,42 @@ client.on('message', message => {
         amount = 1;
       }
       var result = "";
+      var listFormat = false;
       for (i = amount; i > 0; i--) {
-        var format = false;
+        var lineText = "";
+        var lineFormat = false;
         for (x in table) {
-          if (x != "format") {
+          if (x == "lineFormat") {
+            lineFormat = table[x];
+          } else if (x == "listFormat") {
+            listFormat = table[x];
+          } else {
             var index = getRandomInt(0, table[x].length - 1);
-            switch (format) {
-              case "num-list":
-              result += ((amount - i) + 1) + ". " + table[x][index];
-              break;
-              case "plain-list":
-              result += "- " + table[x][index];
-              break;
+            switch (lineFormat) {
               case "sub-heads":
-              result += x + ": " + table[x][index] + "\t";
+              lineText += x + ": " + table[x][index] + "\t";
+              break;
+              case "separate":
+              lineText += table[x][index] + "\t";
               break;
               default:
-              result += table[x][index];
+              lineText += table[x][index];
               break;
             }
-          } else {
-            format = table[x];
           }
         }
-        result += "\n\n";
+        switch (listFormat) {
+          case "num-list":
+          lineText = ((amount - i) + 1) + ". " + lineText;
+          break;
+          case "dash-list":
+          lineText = "- " + lineText;
+          break;
+          default:
+          break;
+        }
+        lineText += "\n\n";
+        result += lineText;
       }
       message.channel.send(result, {code: true});
     } else {

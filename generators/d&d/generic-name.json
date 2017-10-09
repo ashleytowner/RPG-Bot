@@ -1,5 +1,6 @@
 {
-  "format" : "none",
+  "lineFormat" : "none",
+  "listFormat" : "num-list",
   "first-syllable" : [
     "",
     "",

@@ -1,5 +1,6 @@
 {
-  "format" : "sub-heads",
+  "lineFormat" : "sub-heads",
+  "listFormat" : "num-list",
   "gender" : [
     "male",
     "female"
