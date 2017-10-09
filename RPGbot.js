@@ -2,7 +2,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 var fs = require('fs');
-var testing = false;
+var testing = true;
 var clientId = "";
 switch (testing) {
   case true:
