@@ -1,9 +1,20 @@
 // Setup Information
 const Discord = require('discord.js');
 const client = new Discord.Client();
-var clientId = 'MjAzNDQwNzEwMzg3NDk5MDA4.DJqpog.9dAJaf-BVxbMqq2ihtuo7YrMCYA';
-// Bot Info from the config file.
 var fs = require('fs');
+// The tokens file is not synced with the git.
+var tokens = JSON.parse(fs.readFileSync('tokens.json', 'utf-8'));
+var testing = true;
+var clientId = "";
+switch (testing) {
+  case true:
+  clientId = tokens.testing;
+  break;
+  default:
+  clientId = tokens.main;
+  break;
+}
+// Bot Info from the config file.
 var botInfo = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
 
 // Function to get a random integer between [min] and [max], inclusive.
@@ -39,7 +50,7 @@ var commands = [
   {
     name: "about",
     usage: commandCharacter + "about",
-    description: "Gives you information about " + botInfo.name + "."
+    description: "Gives information about " + botInfo.name + "."
   },
   {
     name: "coinflip",
@@ -47,14 +58,19 @@ var commands = [
     description: "Flips <amount> number of coins. If <amount> is left blank, flips one coin."
   },
   {
+    name: "generate",
+    usage: commandCharacter + "generate [table] <amount>",
+    description: "Generates <amount> number of things from the [table] table. Write tables in place of [table] for a list of available tables."
+  },
+  {
     name: "help",
     usage: commandCharacter + "help <command-name>",
-    description: "Sends you a list of commands through private message or tells the usage of a specified command."
+    description: "Sends a list of commands through private message or tells the usage of a specified command."
   },
   {
     name: "invite",
     usage: commandCharacter + "invite",
-    description: "Get an invite link to invite the bot to your server."
+    description: "Get an invite link to invite the bot to a server."
   },
   {
     name: "roll",
@@ -105,7 +121,7 @@ client.on('message', message => {
   // Below are all of the commands. NOTE: In alphabetical order.
   // about command.
   if (command[0] === commandCharacter + 'about') {
-    message.reply("My name is " + botInfo.name + " (v" + botInfo.version + "). " + botInfo.description + "\nTo find out more go to " + botInfo.homepage);
+    message.channel.send("My name is " + botInfo.name + " (v" + botInfo.version + "). " + botInfo.description + "\nTo find out more go to " + botInfo.homepage);
   }
   // coinflip command
   else if (command[0] === commandCharacter + 'coinflip') {
@@ -136,14 +152,36 @@ client.on('message', message => {
         flipstring += ",";
       }
     }
-    message.reply("You flipped " + heads + " heads and " + tails + " tails (" + flipstring + ")");
+    message.channel.send("I flipped " + heads + " heads and " + tails + " tails (" + flipstring + ")");
+  }
+  // Generate command.
+  else if (command[0] === commandCharacter + 'generate') {
+    if (command[1] != null && command[1] != "") {
+      var table = JSON.parse(fs.readFileSync('generators/' + command[1] + '.json', 'utf-8'));
+      var amount = parseInt(command[2]);
+      if (!(amount >= 1)) {
+        amount = 1;
+      }
+      var result = "";
+      for (i = amount; i > 0; i--) {
+        result += ((amount - i) + 1) + ". ";
+        for (x in table) {
+            var index = getRandomInt(0, table[x].length - 1);
+            result += x + ": " + table[x][index] + " | ";
+        }
+        result += "\n";
+      }
+      message.channel.send(result, {code: true});
+    } else {
+      message.channel.send("Usage: " + getCommandInfo("generate").usage, {code: true});
+    }
   }
   // help command.
   else if (command[0] === commandCharacter + 'help') {
     if (getCommandInfo(command[1]) != null) {
       if (getCommandInfo(command[1]) != null) {
         // TODO: Fix error causing bot to crash when the $help command is run.
-        message.reply("Usage: " + getCommandInfo(command[1]).usage + "\n\n" + getCommandInfo(command[1]).description, {code: true});
+        message.channel.send("Usage: " + getCommandInfo(command[1]).usage + "\n\n" + getCommandInfo(command[1]).description, {code: true});
       }
     } else {
       var helpString = "I am a bot designed to make it easier to play RPGs over Discord. I was created by " + botInfo.author + ".\n\n";
@@ -155,7 +193,7 @@ client.on('message', message => {
   }
   // invite command.
   else if (command[0] === commandCharacter + 'invite') {
-    message.reply("Here is my invite link: \nhttps://discordapp.com/oauth2/authorize?client_id=203440659728826368&scope=bot&permissions=67230720");
+    message.channel.send("Here is my invite link: \nhttps://discordapp.com/oauth2/authorize?client_id=203440659728826368&scope=bot&permissions=67230720");
   }
   else if (command[0] === commandCharacter + 'roll') {
     if (typeof(command[1]) !== 'undefined') {
@@ -183,21 +221,21 @@ client.on('message', message => {
           roll = rollDice(count, size);
         }
         var modText = "";
-        message.reply("You rolled " + roll.total + " " + JSON.stringify(roll.array));
+        message.channel.send("I rolled " + roll.total + " " + JSON.stringify(roll.array));
       } else {
-        message.reply("Usage: " + getCommandInfo("roll").usage, {code: true});
+        message.channel.send("Usage: " + getCommandInfo("roll").usage, {code: true});
       }
     } else {
-      message.reply("Usage: " + getCommandInfo("roll").usage, {code: true});
+      message.channel.send("Usage: " + getCommandInfo("roll").usage, {code: true});
     }
   }
   // shutdown command.
   else if (command[0] === commandCharacter + 'shutdown') {
     if (message.author.id == "145420056975769601") {
-      message.reply("Okay, see you soon!");
+      message.channel.send("Okay, see you soon!");
       client.destroy();
     } else {
-      message.reply("I'm sorry, but you can't tell me to do that.");
+      message.channel.send("I'm sorry, but you can't tell me to do that.");
     }
   }
 });
