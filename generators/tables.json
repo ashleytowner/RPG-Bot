@@ -1,5 +1,6 @@
 {
-  "format" : false,
+  "lineFormat" : "none",
+  "listFormat" : "none",
   "d&d/generic-name" : [
     "- d&d/generic-name: A table for generating a very generic fantasy name. From the D&D 5e DM screen.\n\n"
   ],
