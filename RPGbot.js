@@ -60,7 +60,7 @@ var commands = [
   {
     name: "generate",
     usage: commandCharacter + "generate [table] <amount>",
-    description: "Generates <amount> number of things from the [table] table."
+    description: "Generates <amount> number of things from the [table] table. Write tables in place of [table] for a list of available tables."
   },
   {
     name: "help",
