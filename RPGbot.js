@@ -4,7 +4,7 @@ const client = new Discord.Client();
 var fs = require('fs');
 // The tokens file is not synced with the git.
 var tokens = JSON.parse(fs.readFileSync('tokens.json', 'utf-8'));
-var testing = true;
+var testing = false;
 var clientId = "";
 switch (testing) {
   case true:
