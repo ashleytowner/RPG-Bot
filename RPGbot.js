@@ -2,16 +2,16 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 var fs = require('fs');
-// The tokens file is not synced with the git.
-var tokens = JSON.parse(fs.readFileSync('tokens.json', 'utf-8'));
 var testing = false;
 var clientId = "";
 switch (testing) {
   case true:
+  // The tokens file is not synced with the git.
+  var tokens = JSON.parse(fs.readFileSync('tokens.json', 'utf-8'));
   clientId = tokens.testing;
   break;
   default:
-  clientId = tokens.main;
+  clientId = process.env.BOT_TOKEN;
   break;
 }
 // Bot Info from the config file.
