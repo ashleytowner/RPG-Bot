@@ -227,7 +227,14 @@ client.on('message', message => {
   }
   // invite command.
   else if (command[0] === commandCharacter + 'invite') {
-    message.channel.send("Here is my invite link: \nhttps://discordapp.com/oauth2/authorize?client_id=203440659728826368&scope=bot&permissions=67230720");
+    try {
+      message.channel.send({embed: {
+        title: "Invite " + botInfo.name,
+        url: "https://discordapp.com/oauth2/authorize?client_id=203440659728826368&scope=bot&permissions=67230720"
+      }});
+    } catch (e) {
+      console.log(e);
+    }
   }
   else if (command[0] === commandCharacter + 'roll') {
     if (typeof(command[1]) !== 'undefined') {
