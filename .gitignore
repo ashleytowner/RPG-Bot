@@ -3,3 +3,4 @@ npm-debug.log
 tokens.json
 run-bot.bat
 node_modules
+.env
