@@ -1,19 +1,9 @@
 // Setup Information
 const Discord = require('discord.js');
 const client = new Discord.Client();
+require('dotenv').config();
 var fs = require('fs');
-var testing = (typeof process.env.TESTING) !== "undefined" ? process.env.TESTING : true;
-var clientId = "";
-switch (testing) {
-  case true:
-  // The tokens file is not synced with the git.
-  var tokens = JSON.parse(fs.readFileSync('tokens.json', 'utf-8'));
-  clientId = tokens.testing;
-  break;
-  default:
-  clientId = process.env.BOT_TOKEN;
-  break;
-}
+var clientId = process.env.BOT_TOKEN;
 // Bot Info from the config file.
 var botInfo = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
 
