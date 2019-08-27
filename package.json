@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/Towja/RPG-Bot#readme",
   "dependencies": {
-    "discord.js": "^11.2.1",
-    "fs": "0.0.1-security"
+    "discord.js": "^11.5.1",
+    "fs": "0.0.1-security",
+    "nodemon": "^1.19.1"
   }
 }
