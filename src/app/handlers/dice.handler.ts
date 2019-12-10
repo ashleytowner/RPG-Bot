@@ -1,6 +1,6 @@
-class Dice {
+class DiceHandler {
   private randomNumber(low: number, high: number): number {
-    return Math.floor(Math.random() * (high - low)) + low;
+    return Math.floor(Math.random() * (high - low + 1)) + low;
   }
 
   public roll(
@@ -17,4 +17,4 @@ class Dice {
   }
 }
 
-export default Dice;
+export default DiceHandler;

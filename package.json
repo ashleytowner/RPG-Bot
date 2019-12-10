@@ -1,12 +1,11 @@
 {
-  "name": "RPG-Bot",
-  "version": "1.2.5",
+  "name": "rpg_bot",
+  "version": "1.3.0",
   "description": "I am a bot for use on Discord to help out with running RPGs.",
   "main": "RPGbot.js",
   "scripts": {
-    "build": "tsc ./src/app/bot.ts",
-    "start": "node RPGbot.js",
-    "dev": "nodemon RPGbot.js"
+    "build": "tsc ./src/app/bot.ts --outDir build",
+    "start": "npm run build;node ./build/bot.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +22,7 @@
   },
   "homepage": "https://github.com/Towja/RPG-Bot#readme",
   "dependencies": {
+    "@types/node": "^12.12.16",
     "discord.js": "^11.5.1",
     "dotenv": "^8.1.0",
     "fs": "0.0.1-security",
