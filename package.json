@@ -4,6 +4,7 @@
   "description": "I am a bot for use on Discord to help out with running RPGs.",
   "main": "RPGbot.js",
   "scripts": {
+    "build": "tsc ./src/app/bot.ts",
     "start": "node RPGbot.js",
     "dev": "nodemon RPGbot.js"
   },
@@ -25,6 +26,7 @@
     "discord.js": "^11.5.1",
     "dotenv": "^8.1.0",
     "fs": "0.0.1-security",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "typescript": "^3.7.3"
   }
 }
