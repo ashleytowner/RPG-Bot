@@ -25,6 +25,8 @@
     "discord.js": "^11.5.1",
     "dotenv": "^8.1.0",
     "fs": "0.0.1-security",
+    "kind-of": "^6.0.3",
+    "minimist": "^1.2.5",
     "nodemon": "^1.19.1"
   }
 }
